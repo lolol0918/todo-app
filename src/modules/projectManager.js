@@ -12,12 +12,17 @@ export class ProjectManager {
     addProject(name, description = "") {
         const project = new Project(name, description);
         this.projects.push(project);
-        if(!this.currentProjectId) this.currentProjectId = project.id;
+        if (!this.currentProjectId) this.currentProjectId = project.id;
+
+        return project;
     }
-    
+
     // delete project
     deleteProject(projectId) {
-        return this.projects = this.projects.filter(p => p.id !== projectId);
+        this.projects = this.projects.filter(p => p.id !== projectId);
+        if (this.currentProjectId === projectId) {
+            this.currentProjectId = this.projects.length > 0 ? this.projects[0].id : null;
+        }
     }
 
     // get  project
