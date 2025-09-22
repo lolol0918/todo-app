@@ -5,6 +5,10 @@ export class Todo {
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
-    this.completed = completed;
+    this.completed = this.toggleCompleted();
+  }
+
+  toggleCompleted() {
+    this.completed = !this.completed;
   }
 }
