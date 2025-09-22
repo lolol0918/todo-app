@@ -17,5 +17,4 @@ export class Project {
     getTodos() {
         return this.todos;
     }
-
 }
