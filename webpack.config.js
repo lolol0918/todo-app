@@ -22,7 +22,11 @@ module.exports = {
     ],
   },
   devServer: {
-    static: "./dist",
+    static: "./dist",                 // serve dist
+    hot: true,                        // enable hot module replacement (HMR)
+    watchFiles: ["./src/**/*"],       // watch changes in src folder
+    open: true,                       // auto-open browser
+    port: 8080,
   },
   mode: "development",
 };

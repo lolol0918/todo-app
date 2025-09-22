@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.layout {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

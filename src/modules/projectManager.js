@@ -1,6 +1,5 @@
 import { Project } from "./project.js";
 
-
 export class ProjectManager {
     constructor() {
         this.projects = [];
