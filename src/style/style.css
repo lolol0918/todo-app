@@ -5,43 +5,48 @@
 }
 
 :root {
-  /* Colors */
-  --color-bg: #1e1e1e;
-  --color-bg-alt: #2a2a2a;
-  --color-text: #e0e0e0;
-  --color-text-muted: #aaaaaa;
-  --color-accent: #4cafef;
-  --color-accent-hover: #66cfff;
-  --color-danger: #e74c3c;
-  --color-success: #2ecc71;
+    /* Colors */
+    --color-bg: #1e1e1e;
+    --color-bg-alt: #2a2a2a;
+    --color-text: #e0e0e0;
+    --color-text-muted: #aaaaaa;
+    --color-accent: #4cafef;
+    --color-accent-hover: #66cfff;
+    --color-danger: #e74c3c;
+    --color-success: #2ecc71;
 
-  /* Typography */
-  --font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  --font-size-base: 16px;
-  --font-size-sm: 14px;
-  --font-size-lg: 20px;
+    /* Typography */
+    --font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    --font-size-base: 16px;
+    --font-size-sm: 14px;
+    --font-size-lg: 20px;
 
-  /* Spacing */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
 
-  /* Borders & Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+    /* Borders & Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 8px 12px rgba(0, 0, 0, 0.4);
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 12px rgba(0, 0, 0, 0.4);
+
+    --color-border: #3a3a3a;
+    /* subtle gray for borders */
+    --color-border-strong: #555555;
+    /* slightly brighter for emphasis */
 }
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--color-bg);
+    color: var(--color-text);
     line-height: 1.6;
     display: flex;
     flex-direction: column;
@@ -58,4 +63,11 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.heading {
+    font-size: var(--font-size-md);
+    padding: var(--spacing-md);
+    background-color: var(--color-bg-alt);
+    border-bottom: 1px solid var(--color-border-strong);
 }
