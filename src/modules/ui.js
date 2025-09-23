@@ -6,6 +6,9 @@ export class UI {
     }
 
     // bind all using init()
+    init() {
+        this.renderProjects();
+    }
 
     // showTaskForm
 
@@ -19,6 +22,7 @@ export class UI {
         const todo = new Todo(title, description, dueDate, priority);
 
         this.pm.addTodoToProject(this.pm.currentProjectId, todo);
+        this.renderTasks();
     }
 
     // show project form
@@ -52,10 +56,19 @@ export class UI {
     }
 
     renderTasks() {
-        const project = this.pm.getProject(this.currentProjectId);
-        
+        const project = this.pm.getProject(this.pm.currentProjectId); 
+        const taskContainer = document.getElementById("task-container");
+
+        project.todos.forEach(todo => {
+            const div = document.createElement("div");
+            div.classList.add("task");
+            div.innerHTML = `
+        <strong>${todo.title}</strong><br>
+        <small>${todo.description}</small><br>
+        Due: ${todo.dueDate} | Priority: ${todo.priority}
+    `;
+
+            taskContainer.appendChild(div);
+        })
     }
-
-    // render tools
-
 }

@@ -3,6 +3,7 @@ import { Project } from "./project.js";
 export class ProjectManager {
     constructor() {
         this.projects = [];
+        
         // added this to make the UI easier
         this.currentProjectId = null;
     }
