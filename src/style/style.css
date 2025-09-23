@@ -116,3 +116,22 @@ body {
 .sidebar {
     border-right: 1px solid var(--color-border);
 }
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  padding: 0.25rem;
+}
+
+.delete-btn:hover {
+  color: var(--color-accent);
+}

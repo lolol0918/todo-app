@@ -40,23 +40,40 @@ export class UI {
         projectContainer.innerHTML = ``; // clear old projects
 
         this.pm.projects.forEach(project => {
-            const btn = document.createElement("button");
-            btn.classList.add("project-btn");
-            btn.textContent = project.name;
+            const wrapper = document.createElement("div");
+            wrapper.classList.add("project-item");
 
-            // change current project on click
-            btn.addEventListener("click", () => {
+            // project button
+            const projectBtn = document.createElement("button");
+            projectBtn.classList.add("project-btn");
+            projectBtn.textContent = project.name;
+
+            projectBtn.addEventListener("click", () => {
                 this.pm.currentProjectId = project.id;
                 console.log(`Switched to project: ${project.name}`);
-                // later -> re-render tasks for this project
+                this.renderTasks();
             });
 
-            projectContainer.appendChild(btn);
+            // delete button
+            const deleteBtn = document.createElement("button");
+            deleteBtn.classList.add("delete-btn");
+            deleteBtn.innerHTML = "<i class='bx bx-trash'></i>";
+
+            deleteBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                this.pm.deleteProject(project.id);
+                this.renderProjects();
+            });
+
+            wrapper.appendChild(projectBtn);
+            wrapper.appendChild(deleteBtn);
+
+            projectContainer.appendChild(wrapper);
         });
     }
 
     renderTasks() {
-        const project = this.pm.getProject(this.pm.currentProjectId); 
+        const project = this.pm.getProject(this.pm.currentProjectId);
         const taskContainer = document.getElementById("task-container");
 
         project.todos.forEach(todo => {
