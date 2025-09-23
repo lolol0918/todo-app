@@ -63,11 +63,46 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 0 var(--spacing-md);
 }
+
+.create-project-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar-btn {
+    padding: var(--spacing-lg) 0;
+}
+
 
 .heading {
     font-size: var(--font-size-md);
     padding: var(--spacing-md);
     background-color: var(--color-bg-alt);
     border-bottom: 1px solid var(--color-border-strong);
+}
+
+.project-btn {
+  display: block;
+  width: 100%;                 
+  box-sizing: border-box;      
+  padding: 0.75rem 1rem;       
+  margin: 0.25rem 0;           
+  
+  border: none;
+  border: 1px solid var(--color-border);
+  background: none;
+  color: var(--color-text);
+  text-align: left;
+  cursor: pointer;
+  border-radius: var(--radius-md);          /* gives a bit of modern roundness */
+}
+
+.project-btn:hover {
+  background: var(--color-bg-alt);
+  border-bottom-color: var(--color-border-strong);
 }
