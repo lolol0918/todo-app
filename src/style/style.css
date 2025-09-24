@@ -63,7 +63,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding:  0 var(--spacing-md);
+    padding: 0 var(--spacing-md);
 }
 
 .create-project-container {
@@ -87,24 +87,25 @@ body {
 }
 
 .project-btn {
-  display: block;
-  width: 100%;                 
-  box-sizing: border-box;      
-  padding: 0.75rem 1rem;       
-  margin: 0.25rem 0;           
-  
-  border: none;
-  border: 1px solid var(--color-border);
-  background: none;
-  color: var(--color-text);
-  text-align: left;
-  cursor: pointer;
-  border-radius: var(--radius-md);          /* gives a bit of modern roundness */
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem;
+    margin: 0.25rem 0;
+
+    border: none;
+    border: 1px solid var(--color-border);
+    background: none;
+    color: var(--color-text);
+    text-align: left;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    /* gives a bit of modern roundness */
 }
 
 .project-btn:hover {
-  background: var(--color-bg-alt);
-  border-bottom-color: var(--color-border-strong);
+    background: var(--color-bg-alt);
+    border-bottom-color: var(--color-border-strong);
 }
 
 .project-heading {
@@ -125,13 +126,161 @@ body {
 }
 
 .delete-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--color-text-muted);
-  padding: 0.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    padding: 0.25rem;
 }
 
 .delete-btn:hover {
-  color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.todo-card {
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-md);
+    max-width: 400px;
+    width: 100%;
+    font-family: var(--font-family);
+}
+
+.todo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--color-border-strong);
+}
+
+.todo-checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-accent);
+    margin-right: var(--spacing-sm);
+    cursor: pointer;
+}
+
+.todo-title {
+    font-size: var(--font-size-lg);
+    font-weight: bold;
+    color: var(--color-text);
+    margin: 0;
+    flex-grow: 1;
+}
+
+.todo-title.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.todo-priority {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.todo-priority.normal {
+    background-color: var(--color-text-muted);
+    color: var(--color-bg-alt);
+}
+
+.todo-priority.high {
+    background-color: var(--color-accent);
+    color: var(--color-bg-alt);
+}
+
+.todo-priority.urgent {
+    background-color: var(--color-danger);
+    color: var(--color-bg-alt);
+}
+
+.todo-description {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    margin: var(--spacing-sm) 0 var(--spacing-md) 0;
+    line-height: 1.4;
+}
+
+.todo-due-date {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-lg);
+}
+
+.todo-due-date .date-icon {
+    margin-right: var(--spacing-xs);
+    color: var(--color-accent);
+}
+
+.todo-due-date.overdue {
+    color: var(--color-danger);
+}
+
+.todo-due-date.completed {
+    color: var(--color-success);
+}
+
+.todo-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-sm);
+}
+
+.todo-button {
+    padding: var(--spacing-xs) var(--spacing-md);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    background-color: transparent;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--font-family);
+}
+
+.todo-button:hover {
+    background-color: var(--color-accent-hover);
+    color: var(--color-bg-alt);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-sm);
+}
+
+.todo-button.danger {
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+}
+
+.todo-button.danger:hover {
+    background-color: var(--color-danger);
+    color: var(--color-bg-alt);
+    box-shadow: var(--shadow-sm);
+}
+
+.todo-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-lg);
+    transform: translateY(-2px);
+    transition: all 0.2s ease;
+}
+
+.todo-priority-badge {
+    box-shadow: var(--shadow-sm);
+    margin-left: var(--spacing-xs);
+}
+
+.task-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    place-items: center;
 }

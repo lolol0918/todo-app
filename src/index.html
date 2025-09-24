@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet">
     </head>
     <body>
         <header class="heading">
@@ -25,10 +25,44 @@
             <main class="content">
                 <button class="add-task" id="add-task-btn">+ Add Task</button>
                 <div class="task-container" id="task-container">
-                    <div class="task">
-                        random ass task
+                    <div class="todo-card">
+                        <div class="todo-header">
+                            <label style="display: flex; align-items: center; cursor: pointer; margin: 0; font-size: var(--font-size-base);">
+                                <input type="checkbox" class="todo-checkbox">
+                                <h2 class="todo-title">Complete project proposal</h2>
+                            </label>
+                            <span class="todo-priority high todo-priority-badge">high</span>
+                        </div>
+                        <p class="todo-description">Write the initial draft and gather feedback from the team before submission.</p>
+                        <div class="todo-due-date">
+                            <span class="date-icon">📅</span>
+                            Due: Dec 15, 2023
+                        </div>
+                        <div class="todo-actions">
+                            <button class="todo-button">Edit</button>
+                            <button class="todo-button danger">Delete</button>
+                        </div>
+                    </div>
+                    <div class="todo-card">
+                        <div class="todo-header">
+                            <label style="display: flex; align-items: center; cursor: pointer; margin: 0; font-size: var(--font-size-base);">
+                                <input type="checkbox" class="todo-checkbox">
+                                <h2 class="todo-title">Complete project proposal</h2>
+                            </label>
+                            <span class="todo-priority high todo-priority-badge">high</span>
+                        </div>
+                        <p class="todo-description">Write the initial draft and gather feedback from the team before submission.</p>
+                        <div class="todo-due-date">
+                            <span class="date-icon">📅</span>
+                            Due: Dec 15, 2023
+                        </div>
+                        <div class="todo-actions">
+                            <button class="todo-button">Edit</button>
+                            <button class="todo-button danger">Delete</button>
+                        </div>
                     </div>
                 </div>
+                
             </main>
         </div>
     </body>
