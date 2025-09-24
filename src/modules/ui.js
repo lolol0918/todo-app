@@ -10,15 +10,6 @@ export class UI {
         this.renderProjects();
     }
 
-    // show project form
-    createProject() {
-        const name = prompt("Enter project name:");
-        const description = prompt("Enter project description:");
-
-        const project = this.pm.addProject(name, description);
-        this.renderProjects();
-    }
-
     // render projects
     renderProjects() {
         const projectContainer = document.getElementById("projects-container");
@@ -48,6 +39,8 @@ export class UI {
                 e.stopPropagation();
                 this.pm.deleteProject(project.id);
                 this.renderProjects();
+                this.clearTasks();
+
             });
 
             wrapper.appendChild(projectBtn);
@@ -82,14 +75,25 @@ export class UI {
                         </div>
                         <div class="todo-actions">
                         <button class="todo-button">Edit</button>
-                        <button class="todo-button danger">Delete</button>
+                        <button class="todo-button danger" id="delete-task">Delete</button>
                         </div>
                     </div>
                     `;
             div.innerHTML = card;
 
             taskContainer.appendChild(div);
-        })
+
+            const deleteBtn = document.getElementById("delete-task");
+            deleteBtn.addEventListener('click', () => {
+                this.pm.removeTodoFromProject(this.pm.currentProjectId, todo.id);
+                this.renderTasks();
+            });
+        });
+    }
+
+    clearTasks() {
+        const div = document.getElementById("task-container");
+        div.innerHTML = ``;
     }
 
     renderForm() {
@@ -109,7 +113,6 @@ export class UI {
                     <p class="form-subtitle">Fill in the details to generate a todo item</p>
                 </div>
                 <form class="todo-form" action="#" method="post">
-                    <!-- Static form; use JS or backend for submission -->
                     <div class="form-group">
                         <label class="form-label" for="todoTitle">Title</label>
                         <input
@@ -118,12 +121,11 @@ export class UI {
                             class="form-input"
                             placeholder="Enter todo title..."
                             required
-                            value="Complete project proposal"
                         >
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="todoDescription">Description</label>
-                        <textarea id="todoDescription" class="form-textarea" placeholder="Enter detailed description...">Write the initial draft and gather feedback from the team before submission.</textarea>
+                        <textarea id="todoDescription" class="form-textarea" placeholder="Enter detailed description..."></textarea>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="todoDueDate">Due Date</label>
@@ -199,6 +201,69 @@ export class UI {
 
             this.pm.addTodoToProject(this.pm.currentProjectId, todo);
             this.renderTasks();
+
+            div.remove(); // close modal after submit
+        });
+    }
+
+    renderProjectForm() {
+        const body = document.body;
+
+        // modal wrapper
+        const div = document.createElement("div");
+        div.classList.add("modal");
+
+        // project form modal content
+        div.innerHTML = `
+        <div class="form-container">
+            <div class="form-header">
+                <h2 class="form-title">Create New Project</h2>
+                <button type="button" class="modal-close">&times;</button>
+                <p class="form-subtitle">Enter details to create a new project</p>
+            </div>
+            <form class="project-form" action="#" method="post">
+                <div class="form-group">
+                    <label class="form-label" for="projectName">Name</label>
+                    <input
+                        type="text"
+                        id="projectName"
+                        class="form-input"
+                        placeholder="Enter project name..."
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="projectDescription">Description</label>
+                    <textarea
+                        id="projectDescription"
+                        class="form-textarea"
+                        placeholder="Enter project description..."
+                    ></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="reset" class="form-button">Reset</button>
+                    <button type="submit" class="form-button primary">Create Project</button>
+                </div>
+            </form>
+        </div>
+    `;
+
+        body.appendChild(div);
+
+        // close + form events
+        const closeBtn = div.querySelector(".modal-close");
+        const form = div.querySelector(".project-form");
+
+        closeBtn.addEventListener("click", () => div.remove());
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const name = div.querySelector("#projectName").value;
+            const description = div.querySelector("#projectDescription").value;
+
+            this.pm.addProject(name, description); // use your ProjectManager
+            this.renderProjects();
 
             div.remove(); // close modal after submit
         });

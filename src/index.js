@@ -13,7 +13,7 @@ pm.addProject("wao", "none");
 const ui = new UI(pm);
 ui.init();
 
-createProjectBtn.addEventListener('click', () => ui.createProject());
+createProjectBtn.addEventListener('click', () => ui.renderProjectForm());
 addTaskBtn.addEventListener("click", () => {
     pm.currentProjectId
         ? ui.renderForm() // opens prompts + creates the task

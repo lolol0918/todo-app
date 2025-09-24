@@ -3,7 +3,7 @@ import { Project } from "./project.js";
 export class ProjectManager {
     constructor() {
         this.projects = [];
-        
+
         // added this to make the UI easier
         this.currentProjectId = null;
     }
@@ -34,5 +34,13 @@ export class ProjectManager {
     addTodoToProject(projectId, todo) {
         const project = this.getProject(projectId);
         if (project) project.addTodo(todo); // uses Project class' addTodo method
+    }
+
+    // just mirrored addTodoToProject for deletion
+    removeTodoFromProject(projectId, todoId) {
+        const project = this.projects.find(p => p.id === projectId);
+        if (project) {
+            project.removeTodo(todoId);
+        }
     }
 }

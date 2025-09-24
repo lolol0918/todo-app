@@ -279,10 +279,14 @@ body {
 
 .task-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--spacing-lg);
     padding: var(--spacing-lg);
-    place-items: center;
+    align-items: center;
+}
+
+.task {
+    min-width: minmax(400px, 80%);
 }
 
 .add-task {
