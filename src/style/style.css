@@ -295,3 +295,214 @@ body {
     padding: var(--spacing-md);
     border-bottom: 1px solid var(--color-border);
 }
+
+.form-container {
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-lg);
+    max-width: 500px;
+    width: 100%;
+    font-family: var(--font-family);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border-strong);
+}
+
+.form-title {
+    font-size: var(--font-size-lg);
+    font-weight: bold;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.form-subtitle {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    margin: var(--spacing-xs) 0 0 0;
+}
+
+.todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.form-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-sm);
+    color: var(--color-text);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+    /* Subtle focus ring using accent-inspired opacity */
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-xs);
+}
+
+.form-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-accent);
+    cursor: pointer;
+}
+
+.form-priority-options {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    margin-top: var(--spacing-xs);
+}
+
+.priority-option {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: transparent;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-family: var(--font-family);
+}
+
+.priority-option:hover,
+.priority-option.selected {
+    background-color: var(--color-accent);
+    color: var(--color-bg-alt);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-sm);
+}
+
+.priority-option input[type="radio"] {
+    accent-color: var(--color-accent);
+    margin: 0;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border);
+}
+
+.form-button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background-color: transparent;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--font-family);
+    min-width: 100px;
+}
+
+.form-button.primary {
+    background-color: var(--color-accent);
+    color: var(--color-bg-alt);
+    border-color: var(--color-accent);
+}
+
+.form-button.primary:hover {
+    background-color: var(--color-accent-hover);
+    box-shadow: var(--shadow-md);
+}
+
+.form-button:hover {
+    background-color: var(--color-text-muted);
+    color: var(--color-bg-alt);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Modal backdrop */
+.modal {
+  position: fixed;
+  inset: 0; /* shorthand for top/right/bottom/left: 0 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6); /* dim background */
+  z-index: 9999;
+}
+
+/* Hide modal by default */
+.modal.hidden {
+  display: none;
+}
+
+/* Make sure your form container looks good inside modal */
+.modal .form-container {
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg); /* heavier shadow for modal */
+  padding: var(--spacing-lg);
+  max-width: 500px;
+  width: 90%;
+  position: relative; /* so close button can be positioned inside */
+}
+
+/* Close button (X) */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+  color: var(--color-accent);
+}

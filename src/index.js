@@ -16,6 +16,6 @@ ui.init();
 createProjectBtn.addEventListener('click', () => ui.createProject());
 addTaskBtn.addEventListener("click", () => {
     pm.currentProjectId
-        ? ui.showTaskForm() // opens prompts + creates the task
+        ? ui.renderForm() // opens prompts + creates the task
         : alert("Please select a project first!");
 });
