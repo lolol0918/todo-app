@@ -131,7 +131,6 @@ export class UI {
                             type="date"
                             id="todoDueDate"
                             class="form-input"
-                            value="2023-12-15"
                         >
                     </div>
                     <div class="form-group">
@@ -170,10 +169,12 @@ export class UI {
                 </form>
             </div>
         `
-
         // append modal to the body
 
         body.appendChild(div);
+
+        const today = new Date().toISOString().split("T")[0];
+        div.querySelector("#todoDueDate").value = today;
 
         // grab close button + form
         const closeBtn = div.querySelector(".modal-close");
