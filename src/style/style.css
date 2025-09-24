@@ -100,6 +100,8 @@ body {
     text-align: left;
     cursor: pointer;
     border-radius: var(--radius-md);
+    /* default invisible border */
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
     /* gives a bit of modern roundness */
 }
 
@@ -107,6 +109,14 @@ body {
     background: var(--color-bg-alt);
     border-bottom-color: var(--color-border-strong);
 }
+
+.project-btn.active {
+    background-color: var(--color-bg-alt);
+    color: white;
+    border-color: var(--color-text);
+    font-weight: bold;
+}
+
 
 .project-heading {
     font-size: var(--font-size-lg);
@@ -467,46 +477,50 @@ body {
 
 /* Modal backdrop */
 .modal {
-  position: fixed;
-  inset: 0; /* shorthand for top/right/bottom/left: 0 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.6); /* dim background */
-  z-index: 9999;
+    position: fixed;
+    inset: 0;
+    /* shorthand for top/right/bottom/left: 0 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    /* dim background */
+    z-index: 9999;
 }
 
 /* Hide modal by default */
 .modal.hidden {
-  display: none;
+    display: none;
 }
 
 /* Make sure your form container looks good inside modal */
 .modal .form-container {
-  background-color: var(--color-bg-alt);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg); /* heavier shadow for modal */
-  padding: var(--spacing-lg);
-  max-width: 500px;
-  width: 90%;
-  position: relative; /* so close button can be positioned inside */
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    /* heavier shadow for modal */
+    padding: var(--spacing-lg);
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    /* so close button can be positioned inside */
 }
 
 /* Close button (X) */
 .modal-close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  background: none;
-  border: none;
-  color: var(--color-text-muted);
-  cursor: pointer;
-  transition: color 0.2s ease;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color 0.2s ease;
 }
 
 .modal-close:hover {
-  color: var(--color-accent);
+    color: var(--color-accent);
 }

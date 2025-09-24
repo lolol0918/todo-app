@@ -13,6 +13,7 @@ export class UI {
     // render projects
     renderProjects() {
         const projectContainer = document.getElementById("projects-container");
+
         projectContainer.innerHTML = ``; // clear old projects
 
         this.pm.projects.forEach(project => {
@@ -24,9 +25,15 @@ export class UI {
             projectBtn.classList.add("project-btn");
             projectBtn.textContent = project.name;
 
-            projectBtn.addEventListener("click", () => {
+            projectBtn.addEventListener("click", (e) => {
+                // remove active from all buttons
+                document.querySelectorAll(".project-btn").forEach(b => b.classList.remove("active"));
+
+                // add active to the clicked one
+                e.currentTarget.classList.add("active");
+
+                // switch project
                 this.pm.currentProjectId = project.id;
-                console.log(`Switched to project: ${project.name}`);
                 this.renderTasks();
             });
 
@@ -48,6 +55,10 @@ export class UI {
 
             projectContainer.appendChild(wrapper);
         });
+
+        // remove active class from all buttons
+        document.querySelectorAll(".project-btn").forEach(b => b.classList.remove("active"));
+
     }
 
     renderTasks() {
