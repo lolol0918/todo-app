@@ -74,7 +74,7 @@ export class UI {
                         Due: ${todo.dueDate}
                         </div>
                         <div class="todo-actions">
-                        <button class="todo-button">Edit</button>
+                        <button class="todo-button" id="edit-btn">Edit</button>
                         <button class="todo-button danger" id="delete-task">Delete</button>
                         </div>
                     </div>
@@ -84,8 +84,15 @@ export class UI {
             taskContainer.appendChild(div);
 
             const deleteBtn = document.getElementById("delete-task");
+            const editBtn = document.getElementById("edit-btn");
+
             deleteBtn.addEventListener('click', () => {
                 this.pm.removeTodoFromProject(this.pm.currentProjectId, todo.id);
+                this.renderTasks();
+            });
+
+            editBtn.addEventListener('click', () => {
+                this.renderEditTodoForm(todo);
                 this.renderTasks();
             });
         });
@@ -266,6 +273,101 @@ export class UI {
             this.renderProjects();
 
             div.remove(); // close modal after submit
+        });
+    }
+
+    renderEditTodoForm(todo) {
+        const body = document.body;
+
+        const div = document.createElement("div");
+        div.classList.add("modal");
+
+        div.innerHTML = `
+        <div class="form-container">
+            <div class="form-header">
+                <h2 class="form-title">Edit Todo</h2>
+                <button type="button" class="modal-close">&times;</button>
+                <p class="form-subtitle">Update your task details</p>
+            </div>
+            <form class="todo-form" action="#" method="post">
+                <div class="form-group">
+                    <label class="form-label" for="todoTitle">Title</label>
+                    <input
+                        type="text"
+                        id="todoTitle"
+                        class="form-input"
+                        value="${todo.title}"
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="todoDescription">Description</label>
+                    <textarea id="todoDescription" class="form-textarea">${todo.description}</textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="todoDueDate">Due Date</label>
+                    <input
+                        type="date"
+                        id="todoDueDate"
+                        class="form-input"
+                        value="${todo.dueDate}"
+                    >
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Priority</label>
+                    <div class="form-priority-options">
+                        <label class="priority-option">
+                            <input type="radio" name="priority" value="normal" ${todo.priority === "normal" ? "checked" : ""}>
+                            <span>Normal</span>
+                        </label>
+                        <label class="priority-option">
+                            <input type="radio" name="priority" value="high" ${todo.priority === "high" ? "checked" : ""}>
+                            <span>High</span>
+                        </label>
+                        <label class="priority-option">
+                            <input type="radio" name="priority" value="urgent" ${todo.priority === "urgent" ? "checked" : ""}>
+                            <span>Urgent</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Completed</label>
+                    <div class="form-checkbox-group">
+                        <input type="checkbox" id="todoCompleted" class="form-checkbox" ${todo.completed ? "checked" : ""}>
+                        <span>Mark as completed</span>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="form-button primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    `;
+
+        body.appendChild(div);
+
+        // handle submit
+        const form = div.querySelector(".todo-form");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            // update fields from form
+            todo.title = form.querySelector("#todoTitle").value.trim();
+            todo.description = form.querySelector("#todoDescription").value.trim();
+            todo.dueDate = form.querySelector("#todoDueDate").value;
+            todo.priority = form.querySelector("input[name='priority']:checked").value;
+            todo.completed = form.querySelector("#todoCompleted").checked;
+
+            // re-render your task list
+            this.renderTasks();
+
+            // close modal
+            body.removeChild(div);
+        });
+
+        // close modal with ×
+        div.querySelector(".modal-close").addEventListener("click", () => {
+            body.removeChild(div);
         });
     }
 }
