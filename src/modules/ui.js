@@ -85,8 +85,8 @@ export class UI {
                         Due: ${todo.dueDate}
                         </div>
                         <div class="todo-actions">
-                        <button class="todo-button" id="edit-btn">Edit</button>
-                        <button class="todo-button danger" id="delete-task">Delete</button>
+                        <button class="todo-button edit-btn">Edit</button>
+                        <button class="todo-button danger delete-btn">Delete</button>
                         </div>
                     </div>
                     `;
@@ -94,17 +94,16 @@ export class UI {
 
             taskContainer.appendChild(div);
 
-            const deleteBtn = document.getElementById("delete-task");
-            const editBtn = document.getElementById("edit-btn");
+            const deleteBtn = div.querySelector(".delete-btn");
+            const editBtn = div.querySelector(".edit-btn");
 
-            deleteBtn.addEventListener('click', () => {
+            deleteBtn.addEventListener("click", () => {
                 this.pm.removeTodoFromProject(this.pm.currentProjectId, todo.id);
                 this.renderTasks();
             });
 
-            editBtn.addEventListener('click', () => {
-                this.renderEditTodoForm(todo);
-                this.renderTasks();
+            editBtn.addEventListener("click", () => {
+                this.renderEditTodoForm(todo); // no immediate re-render
             });
         });
     }
