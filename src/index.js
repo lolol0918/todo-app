@@ -7,8 +7,6 @@ const addTaskBtn = document.getElementById("add-task-btn");
 
 
 const pm = new ProjectManager();
-window.pm = pm; // temporary just ot test
-pm.addProject("wao", "none");
 
 const ui = new UI(pm);
 ui.init();

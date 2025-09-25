@@ -2,7 +2,14 @@ import { Project } from "./project.js";
 
 export class ProjectManager {
     constructor() {
-        this.projects = [];
+        // localStorage management
+        const stored = localStorage.getItem("projects");
+        
+        // if there is data stored it load that data else it is an empty array
+        // if storage exists, rebuild Projects properly
+        this.projects = stored
+            ? JSON.parse(stored).map(p => Object.assign(new Project(p.name, p.description), p))
+            : [];
 
         // added this to make the UI easier
         this.currentProjectId = null;
@@ -14,6 +21,8 @@ export class ProjectManager {
         this.projects.push(project);
         if (!this.currentProjectId) this.currentProjectId = project.id;
 
+        this.saveToStorage();
+
         return project;
     }
 
@@ -23,6 +32,8 @@ export class ProjectManager {
         if (this.currentProjectId === projectId) {
             this.currentProjectId = this.projects.length > 0 ? this.projects[0].id : null;
         }
+
+        this.saveToStorage();
     }
 
     // get  project
@@ -34,6 +45,8 @@ export class ProjectManager {
     addTodoToProject(projectId, todo) {
         const project = this.getProject(projectId);
         if (project) project.addTodo(todo); // uses Project class' addTodo method
+
+        this.saveToStorage();
     }
 
     // just mirrored addTodoToProject for deletion
@@ -42,5 +55,13 @@ export class ProjectManager {
         if (project) {
             project.removeTodo(todoId);
         }
+
+        this.saveToStorage();
+    }
+
+    // saves projects made into local storage
+    // this will be called in methods that adds or delete projects and tasks of the methods in this class
+    saveToStorage() {
+        localStorage.setItem("projects", JSON.stringify(this.projects));
     }
 }
