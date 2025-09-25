@@ -25,15 +25,16 @@ export class UI {
             projectBtn.classList.add("project-btn");
             projectBtn.textContent = project.name;
 
-            projectBtn.addEventListener("click", (e) => {
-                // remove active from all buttons
-                document.querySelectorAll(".project-btn").forEach(b => b.classList.remove("active"));
+            // mark active based on currentProjectId
+            if (project.id === this.pm.currentProjectId) {
+                projectBtn.classList.add("active");
+            }
 
-                // add active to the clicked one
-                e.currentTarget.classList.add("active");
-
-                // switch project
+            projectBtn.addEventListener("click", () => {
+                // set active project, persist, then re-render
                 this.pm.currentProjectId = project.id;
+                this.pm.saveToStorage();
+                this.renderProjects();
                 this.renderTasks();
             });
 
@@ -55,9 +56,6 @@ export class UI {
 
             projectContainer.appendChild(wrapper);
         });
-
-        // remove active class from all buttons
-        document.querySelectorAll(".project-btn").forEach(b => b.classList.remove("active"));
 
     }
 
